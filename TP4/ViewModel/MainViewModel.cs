@@ -1,4 +1,8 @@
+using System.Collections.Generic;
+using System.ServiceModel.Syndication;
 using GalaSoft.MvvmLight;
+using TP4.DataAccess;
+using TP4.Model;
 
 namespace TP4.ViewModel
 {
@@ -21,6 +25,8 @@ namespace TP4.ViewModel
         /// </summary>
         public MainViewModel()
         {
+            DataAccess.Flux f = new Flux();
+            MyFluxs = f.GetflMyFluxs("tests.xml");
             ////if (IsInDesignMode)
             ////{
             ////    // Code runs in Blend --> create design time data.
@@ -30,5 +36,56 @@ namespace TP4.ViewModel
             ////    // Code runs "for real"
             ////}
         }
+
+        private List<MyFlux> _myFluxs;
+
+        public List<MyFlux> MyFluxs
+        {
+            get { return _myFluxs; }
+            set
+            {
+                if (_myFluxs != value)
+                {
+                    _myFluxs = value;
+                    RaisePropertyChanged("MyFluxs");
+                }
+            }
+        }
+
+        private int _select;
+
+        public int Select
+        {
+            get
+            {
+                return _select;
+            }
+            set
+            {
+                if (_select != value)
+                {
+                    _select = value;
+                    RaisePropertyChanged("Select");
+                }
+            }
+        }
+
+        private List<SyndicationItem> _items;
+        public List<SyndicationItem> Items
+        {
+            get { return _items; }
+            set
+            {
+                if (_items != value)
+                {
+                    _items = value;
+                    RaisePropertyChanged("Items");
+                }
+            }
+        }
+
+
+
+
     }
 }
