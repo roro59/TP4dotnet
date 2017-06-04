@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using TP4.Model;
+using TP4.ViewModel;
 
 namespace TP4.View
 {
@@ -10,6 +13,12 @@ namespace TP4.View
         public MainWindow()
         {
             InitializeComponent();
+          
+        }
+
+        private void ListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+       
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ServiceModel.Syndication;
 using GalaSoft.MvvmLight;
@@ -27,6 +28,8 @@ namespace TP4.ViewModel
         {
             DataAccess.Flux f = new Flux();
             MyFluxs = f.GetflMyFluxs("tests.xml");
+            Items = f.GetItems(" http://www.developpez.com/index/rss");
+            
             ////if (IsInDesignMode)
             ////{
             ////    // Code runs in Blend --> create design time data.

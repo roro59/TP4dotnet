@@ -21,11 +21,14 @@ namespace TP4.DataAccess
             List<MyFlux> res = new List<MyFlux>();
             XDocument xdoc = XDocument.Load(path);
             var querry = from e in xdoc.Descendants()
-                         select e;
+                select e;
             foreach (XElement element in querry)
             {
-                res.Add(new MyFlux(){Name = element.Element("name")?.Value, Url = element.Element("url")?.Value});
+                var xElement = element.Element("name");
+                if (xElement != null)
+                    res.Add(new MyFlux() {Name = xElement.Value, Url = element.Element("url")?.Value});
             }
+            Console.WriteLine(res.Count);
             return res;
         }
 

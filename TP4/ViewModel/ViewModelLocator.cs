@@ -30,6 +30,7 @@ namespace TP4.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+           
 
             ////if (ViewModelBase.IsInDesignModeStatic)
             ////{
