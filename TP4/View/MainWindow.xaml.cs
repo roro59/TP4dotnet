@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Navigation;
 using TP4.Model;
 using TP4.ViewModel;
 
@@ -16,9 +18,10 @@ namespace TP4.View
           
         }
 
-        private void ListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void WebBrowser_OnNavigating(object sender, NavigatingCancelEventArgs e)
         {
-       
+          
+
         }
     }
 }

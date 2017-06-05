@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.ServiceModel.PeerResolvers;
 using System.ServiceModel.Syndication;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using TP4.DataAccess;
 using TP4.Model;
 
@@ -24,11 +26,12 @@ namespace TP4.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
+        private DataAccess.Flux access;
         public MainViewModel()
         {
-            DataAccess.Flux f = new Flux();
-            MyFluxs = f.GetflMyFluxs("tests.xml");
-            Items = f.GetItems(" http://www.developpez.com/index/rss");
+            access = new Flux();
+            MyFluxs = access.GetflMyFluxs("tests.xml");
+           // Items = access.GetItems(" http://www.developpez.com/index/rss");
             
             ////if (IsInDesignMode)
             ////{
@@ -55,9 +58,9 @@ namespace TP4.ViewModel
             }
         }
 
-        private int _select;
+        private MyFlux _select;
 
-        public int Select
+        public MyFlux Select
         {
             get
             {
@@ -68,6 +71,8 @@ namespace TP4.ViewModel
                 if (_select != value)
                 {
                     _select = value;
+                    Items = access.GetItems(value.Url);
+                    RaisePropertyChanged("Items");
                     RaisePropertyChanged("Select");
                 }
             }
@@ -87,8 +92,19 @@ namespace TP4.ViewModel
             }
         }
 
+        private SyndicationItem _currentItem;
 
-
-
+        public SyndicationItem CurrentItem
+        {
+            get { return _currentItem; }
+            set
+            {
+                if (_currentItem != value)
+                {
+                    _currentItem = value;
+                    RaisePropertyChanged("CurrentItem");
+                }
+            }
+        }
     }
 }

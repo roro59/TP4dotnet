@@ -4,12 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TP4.ViewModel"
+        xmlns:view="clr-namespace:TP4.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="600" Width="800">
     <Grid DataContext="{Binding Source={StaticResource Locator}}" Cursor="Arrow">
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"
+        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="350"
                   Grid.Column="1" Grid.Row="0"
-                  ItemsSource="{Binding Main.MyFluxs}" DisplayMemberPath="Name"/>
+                  ItemsSource="{Binding Main.MyFluxs}" DisplayMemberPath="Name"
+                  SelectedItem="{Binding Main.Select , Mode=TwoWay}"/>
+        <ListBox HorizontalAlignment="Left" Width="350" Margin="0,35,0,5" ItemsSource="{Binding Main.Items}" DisplayMemberPath="Summary.Text" SelectedItem="{Binding Main.CurrentItem, Mode=TwoWay}">
+
+        </ListBox>
+        <WebBrowser view:WebBrowserHelper.LinkSource="{Binding Main.CurrentItem.Links[0].Uri}" HorizontalAlignment="Left"  
+                    Margin="355,35,0,0" VerticalAlignment="Top" AllowDrop="True" Navigating="WebBrowser_OnNavigating"/>
+
 
     </Grid>
 </Window>
